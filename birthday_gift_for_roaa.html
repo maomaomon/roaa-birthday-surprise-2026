@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هدية عيد ميلاد 🎂</title>
+<style>
+  :root { --pink:#ff6fae; --deep:#6b2a65; --cream:#fff4f8; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; overflow:hidden; color:white;
+    font-family:Tahoma, Arial, sans-serif;
+    background: radial-gradient(circle at 50% 20%, #713b83 0, #351d56 45%, #15132f 100%);
+  }
+  .stars, .confetti-layer, .balloons { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+  .star {
+    position:absolute; width:3px; height:3px; border-radius:50%; background:#fff;
+    opacity:.3; animation:twinkle 2.5s infinite ease-in-out alternate;
+  }
+  @keyframes twinkle { to { opacity:1; transform:scale(1.8); } }
+  .screen {
+    position:relative; z-index:2; min-height:100vh; display:flex; align-items:center;
+    justify-content:center; padding:24px; text-align:center;
+  }
+  .card {
+    width:min(560px, 94vw); padding:34px 24px 30px; border:1px solid #ffffff45;
+    border-radius:28px; background:#ffffff12; backdrop-filter:blur(12px);
+    box-shadow:0 20px 80px #0005; transition:.7s;
+  }
+  .eyebrow { letter-spacing:2px; color:#ffd3e6; font-size:.9rem; }
+  h1 { font-size:clamp(2rem, 7vw, 3.5rem); margin:12px 0; line-height:1.35; }
+  p { line-height:1.9; color:#ffedf5; font-size:1.08rem; }
+  button {
+    border:0; border-radius:999px; padding:14px 25px; margin-top:12px;
+    background:linear-gradient(135deg,#ff8fc2,#ffcfdf); color:#51204c;
+    font-size:1rem; font-weight:bold; cursor:pointer; box-shadow:0 8px 25px #ff6fae45;
+    transition:transform .2s, filter .2s;
+  }
+  button:hover { transform:translateY(-3px) scale(1.03); filter:brightness(1.05); }
+  .hidden { display:none; }
+  .gift { font-size:4rem; animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(-9px) rotate(3deg); } }
+  .heart-wrap { height:150px; display:grid; place-items:center; margin:8px 0; }
+  .heart {
+    width:88px; height:88px; background:#ff4f91; position:relative; transform:rotate(-45deg);
+    animation:beat 1s infinite; filter:drop-shadow(0 0 22px #ff4f91aa);
+  }
+  .heart:before,.heart:after { content:""; position:absolute; width:88px; height:88px; border-radius:50%; background:#ff4f91; }
+  .heart:before { top:-44px; left:0; } .heart:after { left:44px; top:0; }
+  @keyframes beat { 0%,100% { transform:rotate(-45deg) scale(1); } 50% { transform:rotate(-45deg) scale(1.13); } }
+  .name { color:#ffd0e3; text-shadow:0 0 16px #ff7eb6; }
+  .balloon {
+    position:absolute; bottom:-150px; width:48px; height:62px; border-radius:50% 50% 45% 45%;
+    opacity:.9; animation:floatUp linear forwards;
+    box-shadow:inset -8px -6px 0 #00000012, inset 8px 5px 0 #ffffff35;
+  }
+  .balloon:before { content:""; position:absolute; bottom:-7px; left:19px; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:9px solid currentColor; }
+  .balloon:after { content:""; position:absolute; top:61px; left:23px; width:1px; height:65px; background:#ffffff88; }
+  @keyframes floatUp { to { transform:translateY(-125vh) rotate(12deg); } }
+  .confetti { position:absolute; top:-20px; width:8px; height:13px; animation:fall linear forwards; }
+  @keyframes fall { to { transform:translateY(115vh) rotate(760deg); } }
+  .footer { margin-top:18px; font-size:.8rem; color:#d9c5e8; }
+  .sparkle { display:inline-block; animation:twinkle 1.3s infinite alternate; }
+  @media (max-width:420px) { .card { padding:28px 18px; } p {font-size:1rem;} }
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="balloons" id="balloons"></div>
+<div class="confetti-layer" id="confetti"></div>
+
+<main class="screen">
+  <section class="card" id="intro">
+    <div class="gift">🎁</div>
+    <div class="eyebrow">رسالة صغيرة لشخص مميّز</div>
+    <h1>في مفاجأة<br>مستنياك! <span class="sparkle">✨</span></h1>
+    <p>خُد نفس عميق…<br>وافتح هديتك بالضغط هنا 💌</p>
+    <button id="openBtn">افتح الهدية 💗</button>
+    <div class="footer">صُنعت بمحبة، خصيصاً ليومك الجميل</div>
+  </section>
+
+  <section class="card hidden" id="message">
+    <div class="eyebrow">اليوم يومك 🎉</div>
+    <h1>عيد ميلاد سعيد<br><span class="name" id="personName">رؤى</span>!</h1>
+    <div class="heart-wrap"><div class="heart"></div></div>
+    <p>
+      يا رؤى، أتمنى ليك سنة جديدة مليانة فرح وراحة بال،
+      وأمنيات تتحقق واحدة ورا التانية،
+      وضحكات من القلب وأيام تشبه جمال روحك. 💖
+      <br><strong>كل سنة وإنت بخير، والدنيا ألطف بوجودك! 🎂</strong>
+    </p>
+    <button id="againBtn">خلّي الاحتفال يكبر 🎊</button>
+    <div class="footer">💫 مع أطيب الأمنيات 💫</div>
+  </section>
+</main>
+
+<script>
+  // نجوم صغيرة في الخلفية
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 85; i++) {
+    const s = document.createElement('span');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    s.style.animationDuration = (1.2 + Math.random() * 2.5) + 's';
+    stars.appendChild(s);
+  }
+
+  const balloonColors = ['#ff6fae','#ffd166','#7bdff2','#b2f7ef','#cdb4db','#ff8c69'];
+  function addBalloon() {
+    const b = document.createElement('span');
+    b.className = 'balloon';
+    const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+    b.style.background = color;
+    b.style.color = color;
+    b.style.left = Math.random() * 96 + '%';
+    b.style.animationDuration = (7 + Math.random() * 6) + 's';
+    b.style.transform = `scale(${0.65 + Math.random() * .7})`;
+    document.getElementById('balloons').appendChild(b);
+    setTimeout(() => b.remove(), 14000);
+  }
+
+  function confettiBurst(amount = 110) {
+    const layer = document.getElementById('confetti');
+    for (let i = 0; i < amount; i++) {
+      const c = document.createElement('span');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+      c.style.animationDuration = (2.5 + Math.random() * 3.5) + 's';
+      c.style.animationDelay = Math.random() * 1.4 + 's';
+      c.style.transform = `rotate(${Math.random() * 360}deg)`;
+      layer.appendChild(c);
+      setTimeout(() => c.remove(), 7500);
+    }
+  }
+
+  let balloonTimer;
+  function startParty() {
+    for (let i = 0; i < 18; i++) setTimeout(addBalloon, i * 180);
+    confettiBurst();
+    clearInterval(balloonTimer);
+    balloonTimer = setInterval(addBalloon, 650);
+  }
+
+  document.getElementById('openBtn').addEventListener('click', () => {
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('message').classList.remove('hidden');
+    startParty();
+  });
+  document.getElementById('againBtn').addEventListener('click', () => {
+    confettiBurst(180);
+    for (let i = 0; i < 14; i++) setTimeout(addBalloon, i * 100);
+  });
+</script>
+</body>
+</html>
